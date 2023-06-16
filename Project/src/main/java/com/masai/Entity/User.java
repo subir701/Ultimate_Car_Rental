@@ -50,10 +50,13 @@ public class User {
 	}
 	
 	
-	public User(int userId, String name, int age, String pancard, String license, int phoneNumber, String address,
-			LocalDate dob, String username, String password, Avaliable is_deleted, Set<Car> car) {
+	
+
+
+	public User(String name, int age, String pancard, String license, int phoneNumber, String address, LocalDate dob,
+			String username, String password, Avaliable is_deleted, Set<Car> car, Set<Reservation> reservation,
+			Set<Transaction> transacation) {
 		super();
-		this.userId = userId;
 		this.name = name;
 		this.age = age;
 		this.pancard = pancard;
@@ -65,7 +68,12 @@ public class User {
 		this.password = password;
 		this.is_deleted = is_deleted;
 		this.car = car;
+		this.reservation = reservation;
+		this.transacation = transacation;
 	}
+
+
+
 
 
 	public Avaliable getIs_deleted() {
