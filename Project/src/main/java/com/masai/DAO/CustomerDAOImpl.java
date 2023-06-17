@@ -45,7 +45,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		EntityManager em=null;
 		try {
 			em=EMUtils.getConnection();
-			Query query= em.createQuery("SELECT c.id FROM User c WHERE username = : username AND password = : password AND is_deleted LIKE NO");
+			Query query= em.createQuery("SELECT c.id FROM User c WHERE username = : username AND password = : password AND is_deleted = 'NO'");
 			query.setParameter("username", username);
 			query.setParameter("password", password);
 			List<Integer> listint = (List<Integer>)query.getResultList();
@@ -126,15 +126,5 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return customerList;
 	}
 
-		public static void main(String[] args) {
-			User user= new User("Sumit", 23, "DPW3200", "LIC943", 1234567890, "Indore", LocalDate.parse("1999-01-01"), "SumitGupta", "1234", Avaliable.NO, null,null,null);
-			CustomerDAO dao= new CustomerDAOImpl();
-			try {
-				dao.addCustomer(user);
-			} catch (UnableToAddCustomerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
+		
 }
