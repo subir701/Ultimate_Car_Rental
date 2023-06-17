@@ -43,10 +43,10 @@ public class Car {
 	@JoinColumn(name = "Customer_id")
 	private User user;
 	
-	@OneToMany(mappedBy = "Reservation_Car" , cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL)
 	private Set<Reservation> reservation;
 	
-	@OneToMany(mappedBy = "Transaction_Car" , cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL)
 	private Set<Transaction> transcation;
 	public Car() {
 		super();

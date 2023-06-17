@@ -38,11 +38,11 @@ public class User {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Avaliable is_deleted;
-	@OneToMany(mappedBy = "Customer" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<Car> car;
-	@OneToMany(mappedBy = "Reservation_User" , cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL)
 	private Set<Reservation> reservation;
-	@OneToMany(mappedBy = "Transcarion_User" , cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL)
 	private Set<Transaction> transacation;
 	public User() {
 		super();
