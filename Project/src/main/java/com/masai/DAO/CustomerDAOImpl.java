@@ -1,6 +1,6 @@
 package com.masai.DAO;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 import com.masai.Entity.Avaliable;
@@ -49,10 +49,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			query.setParameter("username", username);
 			query.setParameter("password", password);
 			List<Integer> listint = (List<Integer>)query.getResultList();
+			
 			if(listint.size() == 0) {
 				throw new UnableToFetchCustomerException("The username or password is incorrect.");
 			}
 			LoggedInUserId.loggedInUserId = listint.get(0);
+			
 		}catch(PersistenceException ex) {
 			throw new UnableToFetchCustomerException("Unable to process request , try again later");
 		}finally {
@@ -94,6 +96,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		EntityManager em = null;
 		try {
 			em = EMUtils.getConnection();
+			
 			User customer = em.find(User.class, LoggedInUserId.loggedInUserId);
 			EntityTransaction et = em.getTransaction();
 			et.begin();

@@ -1,11 +1,18 @@
 package com.masai.DAO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.masai.Entity.Avaliable;
 import com.masai.Entity.Car;
+import com.masai.Entity.LoggedInUserId;
+import com.masai.Entity.Reservation;
+import com.masai.Entity.Transaction;
+import com.masai.Entity.User;
 import com.masai.Exception.NoCarFoundException;
 import com.masai.Exception.SomethingWentWrongException;
+import com.masai.Exception.UnableToAddCustomerException;
+import com.masai.Exception.UnableToFetchCustomerException;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -20,7 +27,7 @@ public class CarDAOImpl implements CarDAO {
 		EntityTransaction et=null;
 		try {
 			em = EMUtils.getConnection();
-			Query query= em.createQuery("SELECT COUNT(c) FROM Car WHERE model LIKE :model");
+			Query query= em.createQuery("SELECT COUNT(c) FROM Car c WHERE model LIKE :model");
 			query.setParameter("model", car.getModel());
 			if((long)query.getSingleResult()>0) {
 				throw new SomethingWentWrongException("The model "+car.getModel()+" is already present.");
@@ -31,6 +38,7 @@ public class CarDAOImpl implements CarDAO {
 			et.commit();
 		}catch(PersistenceException ex) {
 			et.rollback();
+			
 			throw new SomethingWentWrongException("Unable to process the request, try again later");
 		}finally {
 			em.close();
@@ -51,7 +59,7 @@ public class CarDAOImpl implements CarDAO {
 			}
 			if(temp.getModel().equals(car.getModel())) {
 				
-				Query query= em.createQuery("SELECT COUNT(c) FROM Car WHERE model LIKE :model");
+				Query query= em.createQuery("SELECT COUNT(c) FROM Car c WHERE model LIKE :model");
 				query.setParameter("model", car.getModel());
 				if((long)query.getSingleResult()>0) {
 					throw new SomethingWentWrongException("The model "+car.getModel()+" is already present.");
@@ -64,6 +72,7 @@ public class CarDAOImpl implements CarDAO {
 			temp.setLocation(car.getLocation());
 			temp.setMileage(car.getMileage());
 			temp.setRate(car.getRate());
+			
 			et.commit();
 			
 		}catch(IllegalArgumentException | IllegalStateException ex) {
@@ -81,7 +90,8 @@ public class CarDAOImpl implements CarDAO {
 		List<Car> list=null;
 		try {
 			em=EMUtils.getConnection();
-			Query query= em.createQuery("FROM Car c");
+			Query query= em.createQuery("FROM Car c ");
+			
 			list=(List<Car>)query.getResultList();
 			if(list.size()==0) {
 				throw new NoCarFoundException("No car is present");
@@ -138,5 +148,28 @@ public class CarDAOImpl implements CarDAO {
 		}
 
 	}
+
+	@Override
+	public List<Car> getListCarUser() throws NoCarFoundException, SomethingWentWrongException {
+		EntityManager em=null;
+		List<Car> list=null;
+		try {
+			em=EMUtils.getConnection();
+			Query query= em.createQuery("FROM Car c WHERE c.Customer_id = id");
+			query.setParameter("id", LoggedInUserId.loggedInUserId);
+			list=(List<Car>)query.getResultList();
+			if(list.size()==0) {
+				throw new NoCarFoundException("No car is present");
+			}
+			
+		}catch(IllegalArgumentException ex) {
+			throw new SomethingWentWrongException("Unable to process request , try again later");
+		}finally {
+			em.close();
+		}
+		return list;
+		
+	}
+	
 
 }
