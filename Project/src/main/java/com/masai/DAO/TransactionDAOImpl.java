@@ -45,6 +45,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 			transcation.setReservation(reserve);
 			transcation.setUser(user);
 			transcation.setPayment_status(Transaction_status.Completed);
+			em.persist(transcation);
 			et.commit();
 		}catch(PersistenceException ex) {
 			et.rollback();
