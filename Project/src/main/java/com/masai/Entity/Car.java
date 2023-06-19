@@ -34,29 +34,38 @@ public class Car {
 	private double rate;
 	@Column(nullable = false)
 	private int mileage;
-	@Column(nullable = false)
+	@Column(columnDefinition = "ENUM('YES','NO') default 'YES'")
 	@Enumerated(EnumType.STRING)
 	private Avaliable availablity;
+	
+	public Car_Status getStatus() {
+		return status;
+	}
+	public void setStatus(Car_Status status) {
+		this.status = status;
+	}
+	@Column(columnDefinition = "ENUM('YES','NO') default 'NO'")
 	@Enumerated(EnumType.STRING)
 	private Avaliable is_deleted;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Customer_id")
 	private User user;
-	
-	@OneToMany( cascade = CascadeType.ALL)
+	@Enumerated(EnumType.STRING)
+	private Car_Status status;
+	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	private Set<Reservation> reservation;
 	
-	@OneToMany( cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL ,fetch =  FetchType.EAGER)
 	private Set<Transaction> transcation;
 	public Car() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(int car_id, String brand, String model, int year, int seating_capacity, String location, double rate,
-			int mileage, Avaliable availablity, Avaliable is_deleted, User user, Set<Reservation> reservation,
+	public Car( String brand, String model, int year, int seating_capacity, String location, double rate,
+			int mileage, User user, Set<Reservation> reservation,
 			Set<Transaction> transcation) {
 		super();
-		this.car_id = car_id;
+		this.availablity=Avaliable.YES;
 		this.brand = brand;
 		this.model = model;
 		this.year = year;
@@ -64,11 +73,11 @@ public class Car {
 		this.location = location;
 		this.rate = rate;
 		this.mileage = mileage;
-		this.availablity = availablity;
-		this.is_deleted = is_deleted;
+		this.status=Car_Status.NOTRESERVED;
 		this.user = user;
 		this.reservation = reservation;
 		this.transcation = transcation;
+		this.is_deleted=Avaliable.NO;
 	}
 	public int getCar_id() {
 		return car_id;

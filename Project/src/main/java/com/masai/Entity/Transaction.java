@@ -42,15 +42,15 @@ public class Transaction {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transaction(int id, User user, Car car, Reservation reservation, double amount,
+	public Transaction( User user, Car car, Reservation reservation, double amount,
 			Transaction_status payment_status, LocalDateTime paymentDate) {
 		super();
-		this.id = id;
+		
 		this.user = user;
 		this.car = car;
 		this.reservation = reservation;
 		this.amount = amount;
-		this.payment_status = payment_status;
+		this.payment_status = Transaction_status.Completed;
 		this.paymentDate = paymentDate;
 	}
 
@@ -108,6 +108,12 @@ public class Transaction {
 
 	public void setPaymentDate(LocalDateTime paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Transaction [id=" + id + ", user=" + user.getUserId() + ", car=" + car.getCar_id() + ", reservation=" + reservation.getReservation_id()
+				+ ", amount=" + amount + ", payment_status=" + payment_status + ", paymentDate=" + paymentDate + "]";
 	}
 	
 	

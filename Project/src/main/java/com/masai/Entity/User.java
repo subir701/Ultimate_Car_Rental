@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,9 +41,68 @@ public class User {
 	private Avaliable is_deleted;
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private Set<Car> car;
-	@OneToMany( cascade = CascadeType.ALL)
+	public String getLicense() {
+		return license;
+	}
+
+
+
+
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
+
+
+
+
+
+	public Set<Car> getCar() {
+		return car;
+	}
+
+
+
+
+
+	public void setCar(Set<Car> car) {
+		this.car = car;
+	}
+
+
+
+
+
+	public Set<Reservation> getReservation() {
+		return reservation;
+	}
+
+
+
+
+
+	public void setReservation(Set<Reservation> reservation) {
+		this.reservation = reservation;
+	}
+
+
+
+
+
+	public Set<Transaction> getTransacation() {
+		return transacation;
+	}
+
+
+
+
+
+	public void setTransacation(Set<Transaction> transacation) {
+		this.transacation = transacation;
+	}
+	@OneToMany( cascade = CascadeType.ALL,fetch =  FetchType.EAGER)
 	private Set<Reservation> reservation;
-	@OneToMany( cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL,fetch =  FetchType.EAGER)
 	private Set<Transaction> transacation;
 	public User() {
 		super();
@@ -66,7 +126,7 @@ public class User {
 		this.dob = dob;
 		this.username = username;
 		this.password = password;
-		this.is_deleted = is_deleted;
+		this.is_deleted = Avaliable.NO;
 		this.car = car;
 		this.reservation = reservation;
 		this.transacation = transacation;
