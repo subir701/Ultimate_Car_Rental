@@ -126,8 +126,7 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation [reservation_id=" + reservation_id + ", user=" + user.getUserId() + ", car=" + car.getCar_id() + ", transaction="
-				+ transaction.getId() + ", start_date=" + start_date + ", end_date=" + end_date + ", reservation_date_time="
+		return "Reservation [reservation_id=" + reservation_id + ", user=" + user.getUserId() + ", car=" + car.getCar_id() + ", start_date=" + start_date + ", end_date=" + end_date + ", reservation_date_time="
 				+ reservation_date_time + ", is_cancelled=" + is_cancelled + "]";
 	}
 	

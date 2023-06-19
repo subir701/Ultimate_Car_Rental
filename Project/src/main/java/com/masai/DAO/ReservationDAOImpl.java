@@ -64,6 +64,8 @@ public class ReservationDAOImpl implements ReservationDAO {
 			Car temp=em.find(Car.class, car.getCar_id());
 			User user=em.find(User.class, LoggedInUserId.loggedInUserId);
 			et=em.getTransaction();
+			tran.setReservation(reservation);
+			Trandao.addTransaction(tran, reservation.getReservation_id(),model);
 			et.begin();
 			reservation.setUser(user);
 			reservation.setCar(temp);
@@ -104,9 +106,9 @@ public class ReservationDAOImpl implements ReservationDAO {
 				user.setReservation(set);
 				user.setCar(setCar);
 			}
-			
+			reservation.setTransaction(tran);
 			em.persist(reservation);
-			Trandao.addTransaction(tran, reservation.getReservation_id(), model);
+			
 			et.commit();
 		}catch(PersistenceException | NoCarFoundException ex) {
 			et.rollback();
