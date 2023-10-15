@@ -2,7 +2,7 @@
 
 Welcome to UltimateCarRental, a comprehensive car rental management system built with Java. Whether you're planning a business trip, a family vacation, or just need a temporary set of wheels, our feature-rich platform offers a seamless and efficient solution to meet your car rental needs.
 
-<h2><a href="https://drive.google.com/file/d/1jywtkDEu6-ptnNkF9QJQ9cZLL0O5qxBi/view?usp=sharing">Presentation</a></h2>
+## [Presentation](https://drive.google.com/file/d/1jywtkDEu6-ptnNkF9QJQ9cZLL0O5qxBi/view?usp=sharing)
 
 ## Key Features
 
