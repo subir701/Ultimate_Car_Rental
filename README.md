@@ -30,3 +30,72 @@ The Frail Power 8560 project uses the following technologies:
 - MySQL (or any supported database by Spring Data JPA)
 - Hibernate
 - Maven
+
+## Methods
+## Transaction
+
+**createTransaction**
+
+Create a new transaction.
+
+**listTransactions**
+
+Get a list of transactions.
+
+## Reservation
+
+**listReservations**
+
+Get a list of reservations.
+
+**createReservation**
+
+Create a new reservation.
+
+## Customer
+
+**addCustomer**
+
+Add a new customer.
+
+**loginCustomer**
+
+Login a customer.
+
+**changePassword**
+
+Change a customer's password.
+
+**deleteCustomer**
+
+Delete a customer.
+
+**listCustomers**
+
+Get a list of customers.
+
+## Car
+
+**addCar**
+
+Add a car.
+
+**updateCar**
+
+Update car details.
+
+**listCars**
+
+Get a list of cars.
+
+**findCarByModel**
+
+Find a car by its model name.
+
+**deleteCar**
+
+Delete a car.
+
+**listUserCars**
+
+Get a list of cars for a specific user.
