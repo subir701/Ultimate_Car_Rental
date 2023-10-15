@@ -19,3 +19,12 @@ Welcome to UltimateCarRental, a comprehensive car rental management system built
 7. **Rating and Reviews:** Gather valuable feedback from your customers and enhance your services based on their reviews. Create a trustworthy reputation for your car rental business.
 
 8. **Analytics and Reporting:** Access comprehensive reports on rental activities, revenue, and customer behavior. These insights empower you to make data-driven decisions and optimize your operations.
+
+## Technology Stack
+The Frail Power 8560 project uses the following technologies:
+
+- Java
+- Data JPA
+- MySQL (or any supported database by Spring Data JPA)
+- Hibernate
+- Maven
