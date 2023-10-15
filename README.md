@@ -22,6 +22,8 @@ Welcome to UltimateCarRental, a comprehensive car rental management system built
 
 8. **Analytics and Reporting:** Access comprehensive reports on rental activities, revenue, and customer behavior. These insights empower you to make data-driven decisions and optimize your operations.
 
+#ER-Diagram
+
 ![alt text](https://github.com/subir701/mucho-tent-9336/blob/main/Project/Screenshot%20(463).png)
 
 ## Technology Stack
